@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Bilibili Timestamp Bookmarks",
+  "version": "1.0.2",
+  "description": "Save, organize, loop, and revisit timestamps from Bilibili videos.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "action": {
+    "default_title": "Timestamp bookmarks",
+    "default_icon": {
+      "16": "icon-16.png",
+      "32": "icon-32.png",
+      "48": "icon-48.png",
+      "128": "icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icon-16.png",
+    "32": "icon-32.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "https://www.bilibili.com/*",
+    "https://api.bilibili.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.bilibili.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["popup.html", "popup.css", "popup.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
